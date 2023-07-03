@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from store . models import Product
 
 def index(request):
-    return render(request,'index.html')
+    products = Product.objects.all().filter(is_avialable=True)
+
+    context = {
+        'products':products
+    }
+    return render(request,'index.html',context)
